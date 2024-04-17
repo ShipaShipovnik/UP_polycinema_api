@@ -1,10 +1,10 @@
 from .serializers import PositionSerializer, TagSerializer
-from .models import Position,Comment
+from .models import Position,Comment,Order
 from rest_framework import permissions, generics, pagination, viewsets, filters
 from taggit.models import Tag
 from rest_framework.response import Response
-from .serializers import RegisterSerializer, UserSerializer,CommentSerializer
-
+from .serializers import RegisterSerializer, UserSerializer,CommentSerializer,OrderSerializer
+from .models import Comment
 
 
 class PageNumberSetPagination(pagination.PageNumberPagination):
@@ -75,6 +75,17 @@ class CommentView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        position_slug = self.kwargs['post_slug'].lower()
+        position_slug = self.kwargs['position_slug'].lower()
         position = Position.objects.get(slug=position_slug)
         return Comment.objects.filter(position=position)
+    
+# ЗАКАЗЫ
+class OrderView(generics.ListCreateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        position_slug = self.kwargs['position_slug'].lower()
+        position = Position.objects.get(slug=position_slug)
+        return Order.objects.filter(position=position)

@@ -33,6 +33,24 @@ class Comment(models.Model) :
 
     class Meta :
         ordering = ['-created_date']
+        verbose_name = "Комментарий"
+        verbose_name_plural = "Комментарии"
 
     def __str__(self) :
         return self.text
+    
+
+class Order(models.Model) :
+    position = models.ForeignKey(Position, on_delete=models.CASCADE, related_name='orders')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner_name')
+    quantity = models.IntegerField()
+    created_date = models.DateTimeField(default=timezone.now)
+
+    class Meta :
+        ordering = ['-created_date']
+        verbose_name = "Заказ"
+        verbose_name_plural = "Заказы"
+
+    def __str__(self) :
+        return f"{self.position} - {self.quantity}"
+    

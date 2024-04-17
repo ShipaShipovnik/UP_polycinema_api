@@ -1,9 +1,10 @@
 from rest_framework import serializers
-from .models import Position, Comment
+from .models import Position, Comment, Order
 from taggit_serializer.serializers import TagListSerializerField, TaggitSerializer
 from django.contrib.auth.models import User
+from taggit.models import Tag
 
-
+# Позиции
 class PositionSerializer(TaggitSerializer, serializers.ModelSerializer):
     tags = TagListSerializerField()
 
@@ -15,10 +16,35 @@ class PositionSerializer(TaggitSerializer, serializers.ModelSerializer):
             'url': {'lookup_field': 'slug'}
         }
 
+# Комменты
+class CommentSerializer(serializers.ModelSerializer):
 
-from taggit.models import Tag
+    username = serializers.SlugRelatedField(slug_field="username", queryset=User.objects.all())
+    position = serializers.SlugRelatedField(slug_field="slug", queryset=Position.objects.all())
+
+    class Meta:
+        model = Comment
+        fields = ("id", "position", "username", "text", "created_date")
+        lookup_field = 'id'
+        extra_kwargs = {
+            'url': {'lookup_field': 'id'}
+        }
+
+# Заказы
+class OrderSerializer(serializers.ModelSerializer):
+    owner = serializers.SlugRelatedField(slug_field="username", queryset=User.objects.all())
+    position = serializers.SlugRelatedField(slug_field="slug", queryset=Position.objects.all())
+
+    class Meta:
+        model = Order
+        fields = ("id", "position", "owner", "quantity", "created_date")
+        lookup_field = 'id'
+        extra_kwargs = {
+            'url': {'lookup_field': 'id'}
+        }
 
 
+# Теги
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
@@ -28,7 +54,7 @@ class TagSerializer(serializers.ModelSerializer):
             'url': {'lookup_field': 'name'}
         }
 
-
+# Регистрация
 class RegisterSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(write_only=True)
 
@@ -57,15 +83,3 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
 
-class CommentSerializer(serializers.ModelSerializer):
-
-    username = serializers.SlugRelatedField(slug_field="username", queryset=User.objects.all())
-    position = serializers.SlugRelatedField(slug_field="slug", queryset=Position.objects.all())
-
-    class Meta:
-        model = Comment
-        fields = ("id", "position", "username", "text", "created_date")
-        lookup_field = 'id'
-        extra_kwargs = {
-            'url': {'lookup_field': 'id'}
-        }
