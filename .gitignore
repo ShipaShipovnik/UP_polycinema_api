@@ -1,5 +1,6 @@
-.myvenv/
-.nuxt/
+myvenv/
+my_nuxtjs_blog/nuxt/
+*.pyc
 
 # IDE / Editor
 .idea

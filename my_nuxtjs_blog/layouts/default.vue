@@ -1,7 +1,6 @@
 <template>
   <div>
     <Navbar />
-    <Slider />
     <div class="container">
       <Nuxt />
     </div>
@@ -12,14 +11,14 @@
 
 <script>
 import Navbar from "~/components/Navbar";
-import Slider from "~/components/Slider";
+// import Slider from "~/components/Slider";
 import Footer from "@/components/Footer";
 
 
 export default {
   components: {
     Footer,
-    Slider,
+    // Slider,
     Navbar,
   }
 };

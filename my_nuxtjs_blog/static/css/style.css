@@ -43,7 +43,7 @@ footer {
 }
 
 .truncate {
-  height: 100px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+    height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
