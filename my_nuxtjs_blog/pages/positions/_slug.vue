@@ -21,7 +21,7 @@
                         </span>
                     </div>
                     <hr>
-                    <Comments />
+                    <Comments :comments="comments"/>
                 </div>
             </div>
         </div>
@@ -33,14 +33,19 @@ import axios from "axios";
 import position_detail from "@/layouts/position_detail";
 import Header from "~/components/Header";
 import Comments from "@/components/Comments";
-
 export default {
+    components: {
+        Header,
+        Comments
+    },
     layout: "position_detail",
     async asyncData({ params }) {
-        console.log(params)
         const position = await axios.get(`http://127.0.0.1:8000/api/positions/${params.slug}`);
+        const tags = await axios.get(`http://127.0.0.1:8000/api/tags/`);
+        const comments = await axios.get(`http://127.0.0.1:8000/api/comments/${params.slug}`);
         return {
             position: position.data,
+            comments: comments.data
         }
     },
 }

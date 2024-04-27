@@ -72,7 +72,7 @@ class ProfileView(generics.GenericAPIView):
 class CommentView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         position_slug = self.kwargs['position_slug'].lower()
