@@ -18,7 +18,7 @@ class Position(models.Model):
     tags = TaggableManager()
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.gramm} г\мл - {self.price}" 
 
     class Meta:
         verbose_name = "Позиция"

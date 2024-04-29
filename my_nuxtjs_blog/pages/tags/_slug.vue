@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Header :name=title />
+        <Header :name=name />
         <div class="container">
             <p class="my-3">Другие теги:
                 <nuxt-link :to="`/tags/${tag.name}`" class="badge badge-success mr-1" v-for="tag in tags"
@@ -45,7 +45,7 @@ export default {
         const tags = await axios.get(`http://127.0.0.1:8000/api/tags/`);
         return {
             positions: data.results,
-            title: `#${params.slug}`,
+            name: `#${params.slug}`,
             tags: tags.data,
         }
     },
