@@ -21,8 +21,12 @@
                 </form>
                 <div class="">
                     <span class="navbar-text mr-2" v-if="user">{{ user.username }}</span>
-                    <nuxt-link class="btn btn-outline-dark me-2" to="/signin">Вход</nuxt-link>
-                    <nuxt-link class="btn btn-dark" to="/signup">Регистрация</nuxt-link>
+                    <span v-if="loggedIn"><nuxt-link class="btn btn-outline-light mr-2"
+                            to="/signout">Выход</nuxt-link></span>
+                    <span v-else>
+                        <nuxt-link class="btn btn-outline-dark me-2" to="/signin">Вход</nuxt-link>
+                        <nuxt-link class="btn btn-dark" to="/signup">Регистрация</nuxt-link>
+                    </span>
                 </div>
             </div>
         </div>
