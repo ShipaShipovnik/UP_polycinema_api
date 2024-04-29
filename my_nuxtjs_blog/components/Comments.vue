@@ -7,7 +7,7 @@
           <div class="form-group">
             <textarea class="form-control" rows="3"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Отправить</button>
+          <button type="submit" class="btn btn-dark">Отправить</button>
         </form>
       </div>
     </div>

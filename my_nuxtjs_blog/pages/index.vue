@@ -4,22 +4,20 @@
     <div class="row">
       <div v-for="position in positions" :key="position.slug" class="col-md-4">
         <div class="card mb-4 shadow-sm">
-          <img :src="position.image" alt="" class="card-img-top">
           <div class="card-body">
             <h4 class="card-title">{{ position.name }}</h4>
             <div v-html="position.sostav" class="truncate"></div>
             <div class="mb-2">
               <span v-for="tag in position.tags">
-                <nuxt-link :to="`/tags/${tag}`" class="mr-1 badge badge-info">#{{ tag }}</nuxt-link>
+                <nuxt-link :to="`/tags/${tag}`" class="badge bg-warning mr-2 catg-tag">{{ tag }}</nuxt-link>
               </span>
             </div>
-            Цена:<div v-html="position.price" class="btn btn-sm btn-outline-secondary m-1"></div>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 <nuxt-link :to="`/positions/${position.slug}`"
                   class="btn btn-sm btn-outline-secondary">Подробнее</nuxt-link>
               </div>
-              <small class="text-muted">{{ position.created_at }}</small>
+              <div>{{position.price}} р</div>
             </div>
           </div>
         </div>

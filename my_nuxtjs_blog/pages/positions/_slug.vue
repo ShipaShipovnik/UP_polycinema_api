@@ -17,7 +17,7 @@
                     Цена:<div v-html="position.price" class="btn btn-sm m-1"></div>рублей
                     <div class="d-flex justify-content-end">
                         <span v-for="tag in position.tags">
-                            <nuxt-link :to="`/tags/${tag}`" class="mr-1 badge badge-info">#{{ tag }}</nuxt-link>
+                            <nuxt-link :to="`/tags/${tag}`" class="mr-1 badge badge-dark">#{{ tag }}</nuxt-link>
                         </span>
                     </div>
                     <hr>

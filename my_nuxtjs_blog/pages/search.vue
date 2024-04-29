@@ -10,7 +10,7 @@
               <li class="breadcrumb-item active" aria-current="page">Поиск</li>
             </ol>
           </nav>
-          <p class="lead">Найдено записей: {{ positions.count }}</p>
+          <p class="lead">Найдено позиций меню: {{ positions.count }}</p>
           <div v-for="position in positions.results" :key="position.id">
             <nuxt-link :to="`/positions/${position.slug}`">
               <h2>{{ position.name }}</h2>

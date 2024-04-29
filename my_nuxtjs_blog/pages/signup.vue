@@ -8,7 +8,7 @@
       <input type="password" id="inputPassword" class="form-control mt-2" placeholder="Пароль" required="" v-model="register.password">
       <label for="ReInputPassword" class="sr-only">Повторите пароль</label>
       <input type="password" id="ReInputPassword" class="form-control mt-2" placeholder="Повторите пароль" required="" v-model="register.password2">
-      <button class="btn mt-2 btn-lg btn-primary btn-block" type="submit">Регистрация</button>
+      <button class="btn mt-2 btn-lg btn-dark btn-block" type="submit">Регистрация</button>
     </form>
   </div>
 </template>
